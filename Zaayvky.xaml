@@ -1,0 +1,27 @@
+﻿<Page x:Class="Exam1.Zaayvky"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Exam1"
+      mc:Ignorable="d" 
+    d:DesignHeight="530" d:DesignWidth="780"
+      Title="Zaayavky">
+
+    <Grid Background="Blue">
+        <DataGrid Name="Zavav" Height="400" Width="600" Margin="90,32,90,98" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="ФИО" Binding="{Binding Posetit.FIO}"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Header="Дата" Binding="{Binding Data_z}"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Header="Время" Binding="{Binding Vremya}"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Header="Услуга" Binding="{Binding Name_usl}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Click="Prin_Click"  Name="Prin" Height="40" Content="Принять" FontFamily="Segoe UI Black" Width="120" Background="#FFD2DCE6" Margin="259,464,401,26"></Button>
+        <Button Click="Otkl_Click"  Name="Otkl" Height="40" Content="Отклонить" FontFamily="Segoe UI Black" Width="120" Background="#FFD2DCE6" Margin="390,464,270,26"></Button>
+        <Button Click="Nazad_Click"  Name="Nazad" Height="40" Content="Назад" FontFamily="Segoe UI Black" Width="120" Background="#FFD2DCE6" Margin="638,464,22,26"></Button>
+        <Frame Name="Perexod"></Frame>
+
+    </Grid>
+
+</Page>

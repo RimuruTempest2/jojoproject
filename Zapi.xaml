@@ -1,0 +1,25 @@
+﻿<Page x:Class="Exam1.Zapi"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Exam1"
+      mc:Ignorable="d" 
+  d:DesignHeight="530" d:DesignWidth="780"
+      Title="Zapi">
+
+    <Grid Background="White">
+        <DataGrid Name="Zap" Height="400" Width="600" Margin="90,32,90,98" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="ФИО" Binding="{Binding Sotrudnik.Name_sotr}"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Header="Должность" Binding="{Binding Sotrudnik.Dolzn}"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Header="Записи" Binding="{Binding Id_zapis}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Click="Zay_Click" Name="Zay" Height="40" Content="Заявка" FontFamily="Segoe UI Black" Width="120" Background="#FFD2DCE6" Margin="39,464,621,26"></Button>
+        <Button Click="Prosmotr_Click" Name="Prosmotr" Height="40" Content="Посмотреть" FontFamily="Segoe UI Black" Width="120" Background="#FFD2DCE6" Margin="620,464,40,26"></Button>
+        <Frame Name="Perexod"></Frame>
+        
+    </Grid>
+    
+</Page>

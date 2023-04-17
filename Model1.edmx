@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище jojoModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Posetit">
+          <Key>
+            <PropertyRef Name="Id_pos" />
+          </Key>
+          <Property Name="Id_pos" Type="int" Nullable="false" />
+          <Property Name="FIO" Type="nvarchar" MaxLength="50" />
+          <Property Name="Login" Type="nvarchar" MaxLength="10" />
+          <Property Name="Pass" Type="nchar" MaxLength="10" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Sotrudnik">
+          <Key>
+            <PropertyRef Name="ID_sotr" />
+          </Key>
+          <Property Name="ID_sotr" Type="int" Nullable="false" />
+          <Property Name="Name_sotr" Type="nvarchar" MaxLength="50" />
+          <Property Name="Dolzn" Type="nvarchar" MaxLength="50" />
+          <Property Name="Login" Type="nvarchar" MaxLength="10" />
+          <Property Name="Pass" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Zapisi">
+          <Key>
+            <PropertyRef Name="Id_zapis" />
+          </Key>
+          <Property Name="Id_zapis" Type="int" Nullable="false" />
+          <Property Name="FIO" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name_usl" Type="nvarchar" MaxLength="50" />
+          <Property Name="Data_z" Type="date" />
+          <Property Name="Id_sotr" Type="int" />
+        </EntityType>
+        <EntityType Name="Zayavky">
+          <Key>
+            <PropertyRef Name="Id_z" />
+          </Key>
+          <Property Name="Id_z" Type="int" Nullable="false" />
+          <Property Name="Name_usl" Type="nvarchar" MaxLength="50" />
+          <Property Name="Data_z" Type="date" />
+          <Property Name="Vremya" Type="time" Precision="5" />
+          <Property Name="Id_pos" Type="int" />
+          <Property Name="ID_sotr" Type="int" />
+        </EntityType>
+        <Association Name="FK_Zapisi_Sotrudnik">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="0..1" />
+          <End Role="Zapisi" Type="Self.Zapisi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="ID_sotr" />
+            </Principal>
+            <Dependent Role="Zapisi">
+              <PropertyRef Name="Id_sotr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zayavky_Posetit">
+          <End Role="Posetit" Type="Self.Posetit" Multiplicity="0..1" />
+          <End Role="Zayavky" Type="Self.Zayavky" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posetit">
+              <PropertyRef Name="Id_pos" />
+            </Principal>
+            <Dependent Role="Zayavky">
+              <PropertyRef Name="Id_pos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zayavky_Sotrudnik">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="0..1" />
+          <End Role="Zayavky" Type="Self.Zayavky" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="ID_sotr" />
+            </Principal>
+            <Dependent Role="Zayavky">
+              <PropertyRef Name="ID_sotr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище jojoModelContainer">
+          <EntitySet Name="Posetit" EntityType="Self.Posetit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sotrudnik" EntityType="Self.Sotrudnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zapisi" EntityType="Self.Zapisi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zayavky" EntityType="Self.Zayavky" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Zapisi_Sotrudnik" Association="Self.FK_Zapisi_Sotrudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Zapisi" EntitySet="Zapisi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zayavky_Posetit" Association="Self.FK_Zayavky_Posetit">
+            <End Role="Posetit" EntitySet="Posetit" />
+            <End Role="Zayavky" EntitySet="Zayavky" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zayavky_Sotrudnik" Association="Self.FK_Zayavky_Sotrudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Zayavky" EntitySet="Zayavky" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="jojoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Posetit">
+          <Key>
+            <PropertyRef Name="Id_pos" />
+          </Key>
+          <Property Name="Id_pos" Type="Int32" Nullable="false" />
+          <Property Name="FIO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Pass" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Zayavky" Relationship="Self.FK_Zayavky_Posetit" FromRole="Posetit" ToRole="Zayavky" />
+        </EntityType>
+        <EntityType Name="Sotrudnik">
+          <Key>
+            <PropertyRef Name="ID_sotr" />
+          </Key>
+          <Property Name="ID_sotr" Type="Int32" Nullable="false" />
+          <Property Name="Name_sotr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dolzn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Pass" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Zapisi" Relationship="Self.FK_Zapisi_Sotrudnik" FromRole="Sotrudnik" ToRole="Zapisi" />
+          <NavigationProperty Name="Zayavky" Relationship="Self.FK_Zayavky_Sotrudnik" FromRole="Sotrudnik" ToRole="Zayavky" />
+        </EntityType>
+        <EntityType Name="Zapisi">
+          <Key>
+            <PropertyRef Name="Id_zapis" />
+          </Key>
+          <Property Name="Id_zapis" Type="Int32" Nullable="false" />
+          <Property Name="FIO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name_usl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Data_z" Type="DateTime" Precision="0" />
+          <Property Name="Id_sotr" Type="Int32" />
+          <NavigationProperty Name="Sotrudnik" Relationship="Self.FK_Zapisi_Sotrudnik" FromRole="Zapisi" ToRole="Sotrudnik" />
+        </EntityType>
+        <EntityType Name="Zayavky">
+          <Key>
+            <PropertyRef Name="Id_z" />
+          </Key>
+          <Property Name="Id_z" Type="Int32" Nullable="false" />
+          <Property Name="Name_usl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Data_z" Type="DateTime" Precision="0" />
+          <Property Name="Vremya" Type="Time" Precision="5" />
+          <Property Name="Id_pos" Type="Int32" />
+          <Property Name="ID_sotr" Type="Int32" />
+          <NavigationProperty Name="Posetit" Relationship="Self.FK_Zayavky_Posetit" FromRole="Zayavky" ToRole="Posetit" />
+          <NavigationProperty Name="Sotrudnik" Relationship="Self.FK_Zayavky_Sotrudnik" FromRole="Zayavky" ToRole="Sotrudnik" />
+        </EntityType>
+        <Association Name="FK_Zayavky_Posetit">
+          <End Role="Posetit" Type="Self.Posetit" Multiplicity="0..1" />
+          <End Role="Zayavky" Type="Self.Zayavky" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posetit">
+              <PropertyRef Name="Id_pos" />
+            </Principal>
+            <Dependent Role="Zayavky">
+              <PropertyRef Name="Id_pos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zapisi_Sotrudnik">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="0..1" />
+          <End Role="Zapisi" Type="Self.Zapisi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="ID_sotr" />
+            </Principal>
+            <Dependent Role="Zapisi">
+              <PropertyRef Name="Id_sotr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zayavky_Sotrudnik">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="0..1" />
+          <End Role="Zayavky" Type="Self.Zayavky" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="ID_sotr" />
+            </Principal>
+            <Dependent Role="Zayavky">
+              <PropertyRef Name="ID_sotr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="jojoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Posetit" EntityType="Self.Posetit" />
+          <EntitySet Name="Sotrudnik" EntityType="Self.Sotrudnik" />
+          <EntitySet Name="Zapisi" EntityType="Self.Zapisi" />
+          <EntitySet Name="Zayavky" EntityType="Self.Zayavky" />
+          <AssociationSet Name="FK_Zayavky_Posetit" Association="Self.FK_Zayavky_Posetit">
+            <End Role="Posetit" EntitySet="Posetit" />
+            <End Role="Zayavky" EntitySet="Zayavky" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zapisi_Sotrudnik" Association="Self.FK_Zapisi_Sotrudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Zapisi" EntitySet="Zapisi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zayavky_Sotrudnik" Association="Self.FK_Zayavky_Sotrudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Zayavky" EntitySet="Zayavky" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище jojoModelContainer" CdmEntityContainer="jojoEntities">
+          <EntitySetMapping Name="Posetit">
+            <EntityTypeMapping TypeName="jojoModel.Posetit">
+              <MappingFragment StoreEntitySet="Posetit">
+                <ScalarProperty Name="Id_pos" ColumnName="Id_pos" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sotrudnik">
+            <EntityTypeMapping TypeName="jojoModel.Sotrudnik">
+              <MappingFragment StoreEntitySet="Sotrudnik">
+                <ScalarProperty Name="ID_sotr" ColumnName="ID_sotr" />
+                <ScalarProperty Name="Name_sotr" ColumnName="Name_sotr" />
+                <ScalarProperty Name="Dolzn" ColumnName="Dolzn" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zapisi">
+            <EntityTypeMapping TypeName="jojoModel.Zapisi">
+              <MappingFragment StoreEntitySet="Zapisi">
+                <ScalarProperty Name="Id_zapis" ColumnName="Id_zapis" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="Name_usl" ColumnName="Name_usl" />
+                <ScalarProperty Name="Data_z" ColumnName="Data_z" />
+                <ScalarProperty Name="Id_sotr" ColumnName="Id_sotr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zayavky">
+            <EntityTypeMapping TypeName="jojoModel.Zayavky">
+              <MappingFragment StoreEntitySet="Zayavky">
+                <ScalarProperty Name="Id_z" ColumnName="Id_z" />
+                <ScalarProperty Name="Name_usl" ColumnName="Name_usl" />
+                <ScalarProperty Name="Data_z" ColumnName="Data_z" />
+                <ScalarProperty Name="Vremya" ColumnName="Vremya" />
+                <ScalarProperty Name="Id_pos" ColumnName="Id_pos" />
+                <ScalarProperty Name="ID_sotr" ColumnName="ID_sotr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

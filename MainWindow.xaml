@@ -1,0 +1,28 @@
+﻿<Window x:Class="Exam1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Exam1"
+        mc:Ignorable="d"
+        Title="Salon" Height="690" Width="830">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55*"/>
+            <RowDefinition Height="542*"/>
+            <RowDefinition Height="37*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="265,171,0,0" Grid.Row="1">
+            <Label FontSize="18"  Margin="0, 20, 0, 20" Content="Логин:" FontFamily="Segoe UI Black"></Label>
+            <Label FontSize="18" FontFamily="Segoe UI Black" Content="Пароль:"></Label>
+        </StackPanel>
+        <StackPanel Width="200" Height="120" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="391,171,0,0" Grid.Row="1">
+            <TextBox FontSize="25" Name="login12" Height="40" Margin="0, 10"></TextBox>
+            <PasswordBox FontSize="25" Name="Parol" Height="40"></PasswordBox>
+        </StackPanel>
+        <Button Click="Vxod_Click" Name="Vxod" Height="40" Content="Войти" FontFamily="Segoe UI Black" Width="120" Margin="331,299,349,203" Background=" #FFD2DCE6" Grid.Row="1"></Button>
+        <Grid Grid.Row="0" Background="#FF6E7882"></Grid>
+        <Grid Grid.Row="2" Background="#FF6E7882"></Grid>
+        <Frame Grid.Row="1" Name="Perexod"></Frame>
+    </Grid>
+</Window>
